@@ -1,5 +1,6 @@
 package br.com.conversordemoeda.principal;
 
+import br.com.conversordemoeda.exception.VallorInvalidoException;
 import br.com.conversordemoeda.moeda.Moeda;
 import br.com.conversordemoeda.moeda.ObjetoJson;
 import br.com.conversordemoeda.moeda.RequisitaApi;
@@ -31,6 +32,9 @@ public class Principal {
                     continua = false;
                     break;
                 }
+                if (opcaoMenu<1 || opcaoMenu>7){
+                 throw new VallorInvalidoException("Essa opção não existe!, escolha uma das opções .");
+                }
                 moeda.atribuiMoeda(opcaoMenu);
                 System.out.println("Digite o valor que deseja converter");
                 valor = Double.parseDouble(leitor.nextLine());
@@ -45,7 +49,10 @@ public class Principal {
 
             }catch (NumberFormatException e ){
                 System.out.println("Formato inválido!,digite uma das opções .");
+            }catch (VallorInvalidoException e){
+                System.out.println(e.getLocalizedMessage());
             }
+
 
         }
         leitor.close();

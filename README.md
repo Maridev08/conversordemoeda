@@ -27,4 +27,16 @@ como o Gson para manipulação de JSON.
 ![API](https://img.shields.io/badge/API-ExchangeRate-orange)
 ![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
 
+## Como baixar o projeto :
+
+Você pode clonar este repositório usando Git. Siga os passos abaixo:
+
+```bash
+# Clone o repositório
+git clone https:https://github.com/Maridev08/conversordemoeda.git
+
+# Acesse a pasta do projeto
+cd conversordemoeda
+# Baixe o Gson no seu computador 
+https://mvnrepository.com/search?q=Gson
 

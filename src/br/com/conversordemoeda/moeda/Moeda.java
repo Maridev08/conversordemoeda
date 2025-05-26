@@ -1,6 +1,6 @@
 package br.com.conversordemoeda.moeda;
 
-import java.util.Scanner;
+
 
 public class Moeda {
 
@@ -14,8 +14,10 @@ public class Moeda {
 
     public void exibeMenu(){
 
-        System.out.println("Escolha a opção desejada : ");
-        System.out.println("*****************************************\n");
+
+        System.out.println("*****************************************");
+        System.out.println("Seja bem vindo(a) ao Conversor de Moeda :");
+        System.out.println("*****************************************");
         System.out.println("""
                     1.Dólar =>>>Peso argentino
                     2.Peso argentino =>>>Dólar

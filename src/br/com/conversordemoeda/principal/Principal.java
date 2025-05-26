@@ -18,36 +18,36 @@ public class Principal {
         Moeda moeda =new Moeda();
         RequisitaApi api=new RequisitaApi();
 
-        System.out.println("*****************************************");
-        System.out.println("Seja bem vindo(a) ao Conversor de Moeda :");
-        System.out.println("*****************************************");
-
         var continua=true;
         var valor=0.0;
-
+        var opcaoMenu=0;
 
         while (continua) {
             moeda.exibeMenu();
 
-            var opcaoMenu = Integer.parseInt(leitor.nextLine());
+            try {
+                opcaoMenu = Integer.parseInt(leitor.nextLine());
+                if (opcaoMenu == 7) {
+                    continua = false;
+                    break;
+                }
+                moeda.atribuiMoeda(opcaoMenu);
+                System.out.println("Digite o valor que deseja converter");
+                valor = Double.parseDouble(leitor.nextLine());
+                api.criaUrl(moeda, valor);
+                api.fazRequisicaoApi();
 
-            if (opcaoMenu == 7) {
-                continua = false;
-                break;
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                ObjetoJson objetoJson = gson.fromJson(api.getJson(), ObjetoJson.class);
+
+                String mensagem = moeda.informaValorConvertido(opcaoMenu, objetoJson, valor);
+                System.out.println(mensagem);
+
+            }catch (NumberFormatException e ){
+                System.out.println("Formato inválido!,digite uma das opções .");
             }
 
-            moeda.atribuiMoeda(opcaoMenu);
-            System.out.println("Digite o valor que deseja converter");
-            valor = Double.parseDouble(leitor.nextLine());
-            api.criaUrl(moeda, valor);
-            api.fazRequisicaoApi();
-
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            ObjetoJson objetoJson = gson.fromJson(api.getJson(), ObjetoJson.class);
-
-            String mensagem = moeda.informaValorConvertido(opcaoMenu, objetoJson, valor);
-            System.out.println(mensagem);
-
         }
+        leitor.close();
     }
 }
